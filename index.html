@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>味纯园 - 中国手工拉面</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; }
+    header { background: #b72f2f; color: white; padding: 1rem; position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; }
+    .hero { background: url('assets/images/10651032_silk%20bowls_Food_lanchou_lamian.jpg') center/cover no-repeat; height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; }
+    .section { padding: 2rem; max-width: 900px; margin: auto; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    img { width: 100%; border-radius: 8px; }
+    .button { background: #e74c3c; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; }
+    footer { text-align: center; padding: 1rem; background: #f0f0f0; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>味纯园</strong></div>
+    <nav>
+      <a href="#">首页</a>
+      <a href="assets/pdf/menu.pdf" target="_blank">菜单</a>
+      <a href="#booking" class="button">立即预订</a>
+    </nav>
+  </header>
+
+  <div class="hero">一碗面 · 一段传承</div>
+
+  <div class="section">
+    <h2>品牌故事</h2>
+    <p>兰州牛肉面是丝路文明的结晶：西亚小麦、西域香料、中原烹饪技艺在黄河畔融合，体现了“和而不同”的东方智慧。
+    其发展史更是一部民生史诗——40万从业者依托“一碗面”脱贫致富，从沿街叫卖到百亿产业，印证了“小吃撬动大民生”的中国故事。</p>
+  </div>
+
+  <div class="section">
+    <h2>特色手工拉面</h2>
+    <div class="grid">
+      <img src="assets/images/10651032_silk bowls_Food_edamame.jpg" alt="全家福手工拉面" />
+      <img src="assets/images/Weixin Image_20250711170905.jpg" alt="牛杂手工拉面" />
+      <img src="assets/images/Weixin Image_202507111709051.jpg" alt="红烧牛肉手工拉面" />
+      <img src="assets/images/Weixin Image_20250711170827.jpg" alt="炸酱面" />
+      <img src="assets/images/10651032_silk bowls_Food_lanchou_lamian.jpg" alt="肉臊面" />
+      <img src="assets/images/Weixin Image_20250711170905.jpg" alt="油泼扯面" />
+    </div>
+  </div>
+
+  <div class="section" id="booking">
+    <h2>立即预订</h2>
+    <form action="https://formsubmit.co/your-email@example.com" method="POST">
+      <input type="text" name="name" placeholder="姓名" required><br><br>
+      <input type="email" name="email" placeholder="邮箱" required><br><br>
+      <input type="text" name="phone" placeholder="联系电话"><br><br>
+      <input type="date" name="date" required><br><br>
+      <input type="time" name="time" required><br><br>
+      <input type="number" name="guests" placeholder="人数" required><br><br>
+      <textarea name="message" placeholder="留言" rows="4"></textarea><br><br>
+      <button class="button" type="submit">提交预订</button>
+    </form>
+  </div>
+
+  <footer>© 味纯园 2025</footer>
+</body>
+</html>
