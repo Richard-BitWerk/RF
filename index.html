@@ -1,786 +1,226 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>味纯园 - Authentische chinesische handgezogene Nudeln</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f7f4;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(139, 69, 19, 0.95);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            height: 50px;
-            border-radius: 5px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ffd700;
-        }
-
-        .language-selector {
-            position: relative;
-            display: inline-block;
-        }
-
-        .language-btn {
-            background: transparent;
-            border: 2px solid #fff;
-            color: #fff;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .language-btn:hover {
-            background: #ffd700;
-            color: #8b4513;
-        }
-
-        .language-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: #fff;
-            min-width: 120px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .language-dropdown a {
-            color: #333;
-            padding: 10px 15px;
-            text-decoration: none;
-            display: block;
-            transition: background 0.3s;
-        }
-
-        .language-dropdown a:hover {
-            background: #f1f1f1;
-        }
-
-        .language-selector:hover .language-dropdown {
-            display: block;
-        }
-
-        .menu-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .menu-dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #fff;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .menu-dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background 0.3s;
-        }
-
-        .menu-dropdown-content a:hover {
-            background: #f1f1f1;
-        }
-
-        .menu-dropdown:hover .menu-dropdown-content {
-            display: block;
-        }
-
-        /* Reserve Button */
-        .reserve-btn {
-            background: #ffd700;
-            color: #8b4513;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .reserve-btn:hover {
-            background: #ffed4a;
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23d4a574" width="1200" height="800"/><circle fill="%23c8986b" cx="200" cy="200" r="100"/><circle fill="%23c8986b" cx="1000" cy="600" r="150"/></svg>');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            margin-top: 80px;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 2rem;
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .cta-button {
-            background: #ffd700;
-            color: #8b4513;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            margin: 0 10px;
-        }
-
-        .cta-button:hover {
-            background: #ffed4a;
-            transform: translateY(-3px);
-        }
-
-        /* Story Section */
-        .story {
-            padding: 80px 0;
-            background: #fff;
-        }
-
-        .story-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .story-text h2 {
-            font-size: 2.5rem;
-            color: #8b4513;
-            margin-bottom: 1.5rem;
-        }
-
-        .story-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: #666;
-        }
-
-        .story-image {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .story-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        /* Gallery Section */
-        .gallery {
-            padding: 80px 0;
-            background: #f9f7f4;
-        }
-
-        .gallery h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #8b4513;
-            margin-bottom: 3rem;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        /* Footer */
-        footer {
-            background: #8b4513;
-            color: #fff;
-            text-align: center;
-            padding: 3rem 0;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #ffd700;
-        }
-
-        .footer-section p, .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            line-height: 1.6;
-        }
-
-        .footer-section a:hover {
-            color: #ffd700;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            padding: 2rem;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover {
-            color: #000;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #8b4513;
-        }
-
-        .submit-btn {
-            background: #8b4513;
-            color: #fff;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            background: #a0522d;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .story-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Language Content */
-        .lang-content {
-            display: none;
-        }
-
-        .lang-content.active {
-            display: block;
-        }
-
-        /* Fixed Reserve Button for Mobile */
-        .fixed-reserve-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ffd700;
-            color: #8b4513;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 999;
-            transition: all 0.3s;
-        }
-
-        .fixed-reserve-btn:hover {
-            background: #ffed4a;
-            transform: translateY(-2px);
-        }
-
-        @media (min-width: 769px) {
-            .fixed-reserve-btn {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>味纯园 - Handmade Noodles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Serif SC', serif;
+      background-color: #fdf8f2;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header img.logo {
+      height: 60px;
+    }
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #c0392b;
+    }
+    .language-switcher {
+      margin-left: 1rem;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: #fff;
+    }
+    .hero img {
+      max-width: 100%;
+      height: auto;
+    }
+    .story {
+      padding: 2rem;
+      background: #fff7ec;
+    }
+    .story h2 {
+      text-align: center;
+    }
+    .story p {
+      max-width: 800px;
+      margin: 1rem auto;
+      line-height: 1.8;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .menu {
+      text-align: center;
+      padding: 2rem;
+    }
+    .menu button {
+      padding: 0.7rem 1.2rem;
+      background: #c0392b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .menu button:hover {
+      background: #a83223;
+    }
+    .reserve-button {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #c0392b;
+      color: white;
+      border: none;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2000;
+    }
+    .form-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+    }
+    .form-modal form {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-modal input, .form-modal textarea {
+      padding: 0.5rem;
+      width: 100%;
+    }
+    .form-modal button {
+      background: #c0392b;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    .menu-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+    }
+    .menu-modal iframe {
+      width: 80%;
+      height: 90%;
+      border: none;
+      border-radius: 12px;
+      background: white;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
+  <header>
+    <img src="logo1.jpg" alt="味纯园 logo" class="logo">
     <nav>
-        <div class="container">
-            <img src="logo1.jpg" alt="味纯园 Logo" class="logo">
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-text" data-de="Startseite" data-en="Home" data-zh="首页">Startseite</a></li>
-                <li><a href="#story" class="nav-text" data-de="Geschichte" data-en="Story" data-zh="故事">Geschichte</a></li>
-                <li class="menu-dropdown">
-                    <a href="#" class="nav-text" data-de="Speisekarte" data-en="Menu" data-zh="菜单">Speisekarte</a>
-                    <div class="menu-dropdown-content">
-                        <a href="c7.pdf" target="_blank" class="nav-text" data-de="PDF Speisekarte" data-en="PDF Menu" data-zh="PDF菜单">PDF Speisekarte</a>
-                    </div>
-                </li>
-                <li><a href="#gallery" class="nav-text" data-de="Galerie" data-en="Gallery" data-zh="图片">Galerie</a></li>
-                <li><a href="#contact" class="nav-text" data-de="Kontakt" data-en="Contact" data-zh="联系">Kontakt</a></li>
-                <li><button class="reserve-btn" onclick="openReservationModal()" data-de="Jetzt reservieren" data-en="Reserve Now" data-zh="立即预订">Jetzt reservieren</button></li>
-                <li class="language-selector">
-                    <button class="language-btn" id="currentLang">DE</button>
-                    <div class="language-dropdown">
-                        <a href="#" onclick="changeLanguage('de')">Deutsch</a>
-                        <a href="#" onclick="changeLanguage('en')">English</a>
-                        <a href="#" onclick="changeLanguage('zh')">中文</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+      <a href="#story">Unsere Geschichte</a>
+      <a href="#menu">Menü</a>
+      <select class="language-switcher" onchange="changeLang(this.value)">
+        <option value="de">Deutsch</option>
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
     </nav>
+    <button class="reserve-button" onclick="document.querySelector('.form-modal').style.display='flex'">Jetzt reservieren</button>
+  </header>
 
-    <!-- Fixed Reserve Button for Mobile -->
-    <button class="fixed-reserve-btn" onclick="openReservationModal()" data-de="Reservieren" data-en="Reserve" data-zh="预订">Reservieren</button>
+  <section class="hero">
+    <img src="logo1.jpg" alt="味纯园 Logo Groß">
+  </section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="lang-content active" data-lang="de">
-                <h1>味纯园</h1>
-                <p>Authentische chinesische handgezogene Nudeln im Herzen Deutschlands</p>
-                <a href="#story" class="cta-button">Unsere Geschichte</a>
-                <button class="cta-button" onclick="openReservationModal()">Jetzt reservieren</button>
-            </div>
-            <div class="lang-content" data-lang="en">
-                <h1>Wei Chun Yuan</h1>
-                <p>Authentic Chinese Hand-Pulled Noodles in the Heart of Germany</p>
-                <a href="#story" class="cta-button">Our Story</a>
-                <button class="cta-button" onclick="openReservationModal()">Reserve Now</button>
-            </div>
-            <div class="lang-content" data-lang="zh">
-                <h1>味纯园</h1>
-                <p>德国心脏地带的正宗中式手工拉面</p>
-                <a href="#story" class="cta-button">我们的故事</a>
-                <button class="cta-button" onclick="openReservationModal()">立即预订</button>
-            </div>
-        </div>
-    </section>
+  <section id="story" class="story">
+    <h2>Die Philosophie einer Schüssel Nudeln</h2>
+    <p>
+      Lanzhou-Rindfleischnudeln sind ein Ergebnis der Seidenstraßen-Zivilisation: Westasiatischer Weizen, Gewürze aus Zentralasien und kulinarische Techniken aus dem chinesischen Kernland vereinen sich am Ufer des Gelben Flusses – ein Symbol fernöstlicher Weisheit der Harmonie in Vielfalt. Die Entwicklung dieser Nudeltradition ist auch ein soziales Epos: Über 400.000 Menschen fanden durch "eine Schüssel Nudeln" den Weg aus der Armut und schufen ein Milliardenmarkt, der zeigt, wie Streetfood ein ganzes Volk bewegen kann.
+    </p>
+  </section>
 
-    <!-- Story Section -->
-    <section id="story" class="story">
-        <div class="container">
-            <div class="story-content">
-                <div class="story-text">
-                    <div class="lang-content active" data-lang="de">
-                        <h2>Eine Schale Nudeln - Eine Kulturphilosophie</h2>
-                        <p>Lanzhou-Rindfleischnudeln sind das Kristall der Seidenstraßen-Zivilisation: Weizen aus Westasien, Gewürze aus dem westlichen Gebiet und Kochkünste aus der zentralen Ebene verschmelzen am Ufer des Gelben Flusses und verkörpern die östliche Weisheit von "Harmonie in Verschiedenheit".</p>
-                        <p>Die Entwicklungsgeschichte ist ein Epos des Lebensunterhalts - 400.000 Beschäftigte haben sich durch "eine Schale Nudeln" aus der Armut befreit und Wohlstand erreicht. Vom Straßenverkauf zur Milliarden-Industrie - dies bestätigt die chinesische Geschichte von "kleine Snacks bewegen große Existenzen".</p>
-                        <p>Bei 味纯园 bringen wir diese jahrtausendealte Tradition nach Deutschland und verbinden östliche Kochkunst mit westlicher Gastfreundschaft.</p>
-                    </div>
-                    <div class="lang-content" data-lang="en">
-                        <h2>A Bowl of Noodles - A Cultural Philosophy</h2>
-                        <p>Lanzhou beef noodles are the crystallization of Silk Road civilization: West Asian wheat, Western Region spices, and Central Plains cooking techniques merge on the banks of the Yellow River, embodying the Eastern wisdom of "harmony in diversity".</p>
-                        <p>Its development history is an epic of livelihood - 400,000 practitioners have lifted themselves out of poverty and achieved prosperity through "a bowl of noodles", from street peddling to a billion-dollar industry, confirming the Chinese story of "small snacks driving big livelihoods".</p>
-                        <p>At Wei Chun Yuan, we bring this millennia-old tradition to Germany, combining Eastern culinary art with Western hospitality.</p>
-                    </div>
-                    <div class="lang-content" data-lang="zh">
-                        <h2>一碗面的文化哲学</h2>
-                        <p>兰州牛肉面是丝路文明的结晶：西亚小麦、西域香料、中原烹饪技艺在黄河畔融合，体现了"和而不同"的东方智慧。</p>
-                        <p>其发展史更是一部民生史诗——40万从业者依托"一碗面"脱贫致富，从沿街叫卖到百亿产业，印证了"小吃撬动大民生"的中国故事。</p>
-                        <p>在味纯园，我们将这千年传承带到德国，将东方烹饪艺术与西方待客之道完美结合。</p>
-                    </div>
-                </div>
-                <div class="story-image">
-                    <img src="Weixin Image_20250711170905.jpg" alt="Traditional Noodle Making">
-                </div>
-            </div>
-        </div>
-    </section>
+  <section class="gallery">
+    <img src="Weixin Image_20250711170905.jpg" alt="Nudelgericht 1">
+    <img src="Weixin Image_202507111709051.jpg" alt="Nudelgericht 2">
+    <img src="Weixin Image_20250711170827.jpg" alt="Nudelgericht 3">
+    <img src="10651032_silk bowls_Food_lanchou_lamian.jpg" alt="Lanzhou Nudel">
+    <img src="10651032_silk bowls_Food_edamame.jpg" alt="Edamame">
+  </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <div class="lang-content active" data-lang="de">
-                <h2>Unsere Spezialitäten</h2>
-            </div>
-            <div class="lang-content" data-lang="en">
-                <h2>Our Specialties</h2>
-            </div>
-            <div class="lang-content" data-lang="zh">
-                <h2>我们的特色菜</h2>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="10651032_silk bowls_Food_lanchou_lamian.jpg" alt="Lanzhou Lamian">
-                </div>
-                <div class="gallery-item">
-                    <img src="10651032_silk bowls_Food_edamame.jpg" alt="Edamame">
-                </div>
-                <div class="gallery-item">
-                    <img src="Weixin Image_202507111709051.jpg" alt="Noodle Dish">
-                </div>
-                <div class="gallery-item">
-                    <img src="Weixin Image_20250711170827.jpg" alt="Traditional Dish">
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="menu" class="menu">
+    <h2>Menü</h2>
+    <button onclick="document.querySelector('.menu-modal').style.display='flex'">PDF-Menü ansehen</button>
+  </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="lang-content active" data-lang="de">
-                        <h3>Kontakt</h3>
-                        <p>Email: jc2062494@gmail.com</p>
-                        <p>Für Reservierungen und Anfragen</p>
-                    </div>
-                    <div class="lang-content" data-lang="en">
-                        <h3>Contact</h3>
-                        <p>Email: jc2062494@gmail.com</p>
-                        <p>For reservations and inquiries</p>
-                    </div>
-                    <div class="lang-content" data-lang="zh">
-                        <h3>联系我们</h3>
-                        <p>邮箱: jc2062494@gmail.com</p>
-                        <p>预订及咨询</p>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <div class="lang-content active" data-lang="de">
-                        <h3>Über uns</h3>
-                        <p>味纯园 - Wo Tradition auf Moderne trifft</p>
-                        <p>Authentische chinesische Küche in Deutschland</p>
-                    </div>
-                    <div class="lang-content" data-lang="en">
-                        <h3>About Us</h3>
-                        <p>Wei Chun Yuan - Where Tradition Meets Modernity</p>
-                        <p>Authentic Chinese Cuisine in Germany</p>
-                    </div>
-                    <div class="lang-content" data-lang="zh">
-                        <h3>关于我们</h3>
-                        <p>味纯园 - 传统与现代的完美结合</p>
-                        <p>德国的正宗中式料理</p>
-                    </div>
-                </div>
-            </div>
-            <div class="lang-content active" data-lang="de">
-                <p>&copy; 2025 味纯园. Alle Rechte vorbehalten.</p>
-            </div>
-            <div class="lang-content" data-lang="en">
-                <p>&copy; 2025 Wei Chun Yuan. All rights reserved.</p>
-            </div>
-            <div class="lang-content" data-lang="zh">
-                <p>&copy; 2025 味纯园. 版权所有.</p>
-            </div>
-        </div>
-    </footer>
+  <div class="menu-modal" onclick="if(event.target.className==='menu-modal')this.style.display='none'">
+    <iframe src="c7.pdf"></iframe>
+  </div>
 
-    <!-- Reservation Modal -->
-    <div id="reservationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeReservationModal()">&times;</span>
-            <div class="lang-content active" data-lang="de">
-                <h2>Tisch reservieren</h2>
-            </div>
-            <div class="lang-content" data-lang="en">
-                <h2>Reserve a Table</h2>
-            </div>
-            <div class="lang-content" data-lang="zh">
-                <h2>预订餐桌</h2>
-            </div>
-            <form id="reservationForm">
-                <div class="form-group">
-                    <label for="name" class="form-label" data-de="Name:" data-en="Name:" data-zh="姓名:">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="date" class="form-label" data-de="Datum:" data-en="Date:" data-zh="日期:">Datum:</label>
-                    <input type="date" id="date" name="date" required>
-                </div>
-                <div class="form-group">
-                    <label for="time" class="form-label" data-de="Uhrzeit:" data-en="Time:" data-zh="时间:">Uhrzeit:</label>
-                    <input type="time" id="time" name="time" required>
-                </div>
-                <div class="form-group">
-                    <label for="guests" class="form-label" data-de="Anzahl Personen:" data-en="Number of Guests:" data-zh="人数:">Anzahl Personen:</label>
-                    <select id="guests" name="guests" required>
-                        <option value="">Auswählen</option>
-                        <option value="1">1 Person</option>
-                        <option value="2">2 Personen</option>
-                        <option value="3">3 Personen</option>
-                        <option value="4">4 Personen</option>
-                        <option value="5">5 Personen</option>
-                        <option value="6">6+ Personen</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="phone" class="form-label" data-de="Telefon:" data-en="Phone:" data-zh="电话:">Telefon:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="message" class="form-label" data-de="Nachricht (optional):" data-en="Message (optional):" data-zh="留言 (可选):">Nachricht (optional):</label>
-                    <textarea id="message" name="message" rows="3"></textarea>
-                </div>
-                <button type="submit" class="submit-btn" data-de="Reservierung senden" data-en="Send Reservation" data-zh="发送预订">Reservierung senden</button>
-            </form>
-        </div>
-    </div>
+  <div class="form-modal" onclick="if(event.target.className==='form-modal')this.style.display='none'">
+    <form action="https://formspree.io/f/xwkgdnvn" method="POST">
+      <h2>Reservierungsformular</h2>
+      <input type="text" name="Name" placeholder="Name" required>
+      <input type="date" name="Datum" required>
+      <input type="time" name="Uhrzeit" required>
+      <input type="number" name="Personen" placeholder="Anzahl Personen" required>
+      <input type="tel" name="Telefon" placeholder="Telefonnummer" required>
+      <textarea name="Nachricht" placeholder="Weitere Hinweise (optional)"></textarea>
+      <button type="submit">Absenden</button>
+    </form>
+  </div>
 
-    <script>
-        let currentLanguage = 'de';
+  <footer>
+    &copy; 2025味纯园 - Handmade Noodles. All rights reserved.
+  </footer>
 
-        function changeLanguage(lang) {
-            currentLanguage = lang;
-            document.getElementById('currentLang').textContent = lang.toUpperCase();
-            
-            // Hide all language content
-            const langContents = document.querySelectorAll('.lang-content');
-            langContents.forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Show selected language content
-            const selectedContents = document.querySelectorAll(`[data-lang="${lang}"]`);
-            selectedContents.forEach(content => {
-                content.classList.add('active');
-            });
-            
-            // Update navigation text
-            updateNavigationText(lang);
-            
-            // Update form labels
-            updateFormLabels(lang);
-        }
-
-        function updateNavigationText(lang) {
-            const navTexts = document.querySelectorAll('.nav-text');
-            navTexts.forEach(text => {
-                const langText = text.getAttribute(`data-${lang}`);
-                if (langText) {
-                    text.textContent = langText;
-                }
-            });
-        }
-
-        function updateFormLabels(lang) {
-            const formLabels = document.querySelectorAll('.form-label');
-            formLabels.forEach(label => {
-                const langText = label.getAttribute(`data-${lang}`);
-                if (langText) {
-                    label.textContent = langText;
-                }
-            });
-            
-            // Update button text
-            const submitBtn = document.querySelector('.submit-btn');
-            const btnText = submitBtn.getAttribute(`data-${lang}`);
-            if (btnText) {
-                submitBtn.textContent = btnText;
-            }
-        }
-
-        function openReservationModal() {
-            document.getElementById('reservationModal').style.display = 'block';
-        }
-
-        function closeReservationModal() {
-            document.getElementById('reservationModal').style.display = 'none';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('reservationModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // Handle form submission
-        document.getElementById('reservationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Create mailto link
-            const subject = encodeURIComponent('Neue Reservierung - 味纯园');
-            const body = encodeURIComponent(
-                `Neue Reservierung:\n\n` +
-                `Name: ${data.name}\n` +
-                `Datum: ${data.date}\n` +
-                `Uhrzeit: ${data.time}\n` +
-                `Anzahl Personen: ${data.guests}\n` +
-                `Telefon: ${data.phone}\n` +
-                `Nachricht: ${data.message || 'Keine Nachricht'}\n\n` +
-                `Gesendet von der Website am ${new Date().toLocaleString('de-DE')}`
-            );
-            
-            const mailtoLink = `mailto:jc2062494@gmail.com?subject=${subject}&body=${body}`;
-            window.location.href = mailtoLink;
-            
-            // Close modal and reset form
-            closeReservationModal();
-            this.reset();
-            
-            // Show success message
-            alert(currentLanguage ===
+  <script>
+    function changeLang(lang) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.location.href = url.toString();
+    }
+  </script>
+</body>
+</html>
