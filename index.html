@@ -40,7 +40,7 @@
     }
     .hero {
       text-align: center;
-      padding: 4rem 2rem;
+      padding: 6rem 2rem 4rem 2rem;
       background-color: #fff;
     }
     .hero img {
@@ -88,7 +88,7 @@
     }
     .reserve-button {
       position: fixed;
-      top: 1rem;
+      bottom: 1rem;
       right: 1rem;
       background: #c0392b;
       color: white;
@@ -98,6 +98,7 @@
       font-weight: bold;
       cursor: pointer;
       z-index: 2000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
     .form-modal {
       display: none;
@@ -167,8 +168,9 @@
         <option value="zh">中文</option>
       </select>
     </nav>
-    <button class="reserve-button" onclick="document.querySelector('.form-modal').style.display='flex'">Jetzt reservieren</button>
   </header>
+
+  <button class="reserve-button" onclick="document.querySelector('.form-modal').style.display='flex'">Jetzt reservieren</button>
 
   <section class="hero">
     <img src="logo1.jpg" alt="味纯园 Logo Groß">
